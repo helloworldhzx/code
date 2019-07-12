@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div onclick="func(12)">节流</div>
+    <script>
+        // function throttle(fn,wait){
+        //     var time = null;
+        //     return function(){
+        //     var args = arguments;
+        //     var content = this
+        //         if(!time){
+        //             time = setTimeout(function(){
+        //                 fn.apply(content,args)
+        //                 time = null;
+        //             },wait)
+        //         }
+        //     }
+        // }
+        function throttle(fn,wait){
+            var time = new Date();
+            return function(){
+            var args = arguments;
+            var content = this
+            var nowDate = new Date();
+            if(nowDate-time>=wait){
+                fn.apply(content,args)
+                time = new Date()
+            }
+            }
+        }
+        function aaa(a){
+            console.log(a)
+        }
+        const func = throttle(aaa,1000)
+        new Promise((resolve,reject)=>{
+            resolve(123);
+            for (let index = 0; index < 10; index++) {
+                console.log(index)                
+            }
+        })
+    </script>
+</body>
+</html>

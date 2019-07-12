@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        Function.prototype.myCall = function(content=window){
+            console.log(this)
+            console.log(content);
+            content.fn= this;
+            var arg = Array.from(arguments).splice(1)
+            var result = content.fn(...arg)
+            delete content.fn
+        }
+        var foo = {
+            a: 1
+        }
+        function bar(name,age){
+            console.log(name)
+            console.log(age)
+            console.log(this.a);
+        }
+        bar.myCall(foo,"123",12)
+    </script>
+</body>
+</html>
