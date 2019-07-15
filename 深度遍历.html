@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="inde.js"></script>
+    <script>
+        let deepTraversal3 = (node) => {
+            let stack = []
+            let nodes = []
+            if (node) {
+                // 推入当前处理的node
+                stack.push(node)
+                console.log(stack)
+                while (stack && stack.length) {
+                    let item = stack.pop()
+                    let children = item.children
+                    console.log(children)
+                    nodes.push(item)
+                    // node = [] stack = [parent]
+                    // node = [parent] stack = [child3,child2,child1]
+                    // node = [parent, child1] stack = [child3,child2,child1-2,child1-1]
+                    // node = [parent, child1-1] stack = [child3,child2,child1-2]
+                    if (children) {
+                        for (let i = children.length - 1; i >= 0; i--) {
+                            stack.push(children[i])
+                        }
+                    }
+
+                }
+            }
+            return nodes
+        }
+        console.log(deepTraversal3(arr))
+    </script>
+</body>
+
+</html>
