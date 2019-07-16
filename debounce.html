@@ -1,29 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
+
 <body>
     <div onclick="func(12)">防抖</div>
     <script>
-        function debounce(fn,wait){
+        function debounce(fn, wait) {
             var time = null
             console.log(1)
-            return function(){
+            return function () {
                 const args = arguments
-                if(time!=null){
-                clearTimeout(time)
-            }
-            time=setTimeout(function(){fn.apply(this,args)},wait)
+                if (time != null) {
+                    clearTimeout(time)
+                }
+                time = setTimeout(function () { fn.apply(this, args) }, wait)
             }
         }
-        function aaa(a){
+        function aaa(a) {
             console.log(a)
         }
-        const func = debounce(aaa,1000)
+        const func = debounce(aaa, 1000)
     </script>
 </body>
+
 </html>

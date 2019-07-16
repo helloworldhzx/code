@@ -1,28 +1,30 @@
 <!-- new 的实现 -->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
+
 <body>
     new的实现
     <script>
-        function New(func){
+        function New(func) {
             var res = {};
-            if(func.prototype!==null){
+            if (func.prototype !== null) {
                 res.__proto__ = func.prototype;
             }
-            var ret = func.apply(res,Array.prototype.splice.call(arguments,1));
+            var ret = func.apply(res, Array.prototype.splice.call(arguments, 1));
             // 如Test有返回值object或function，则return返回值    （解释了为什么new出来的对象，如果构造函数有返回object或function，this指向返回值）
-            if((typeof ret === "object" || typeof ret === "function")&&ret!==null){
+            if ((typeof ret === "object" || typeof ret === "function") && ret !== null) {
                 return ret
             }
             return res
         }
-        function Test(a,b){
+        function Test(a, b) {
             // this.aaa = function(){
             //     console.log(this.a)
             // }
@@ -30,9 +32,10 @@
             //     a:123
             // }
         }
-        var obj = New(Test,1,2)
-        var obj2 = new Test(1,2)
-    
+        var obj = New(Test, 1, 2)
+        var obj2 = new Test(1, 2)
+
     </script>
 </body>
+
 </html>

@@ -1,37 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
+
 <body>
     apply的实现
     <script src="./inde.js">
     </script>
     <script>
-        Function.prototype.myApply = function(content=window){
-            content.fn=this;
-            if(Array.isArray(arguments[1])){
+        Function.prototype.myApply = function (content = window) {
+            content.fn = this;
+            if (Array.isArray(arguments[1])) {
                 var arg = arguments[1];
-            var result = content.fn(...arg)
-            delete content.fn
-            return result
+                var result = content.fn(...arg)
+                delete content.fn
+                return result
             }
             throw Error("123")
         }
-        var foo={
+        var foo = {
             value: 1
         }
-        function bar(name,age){
+        function bar(name, age) {
             console.log(name);
             console.log(age);
             console.log(this.value);
         }
-        bar.myApply(foo,["123"])
-        asdasda="asd2"
+        bar.myApply(foo, ["123"])
+        asdasda = "asd2"
         console.log(asdasda)
     </script>
 </body>
+
 </html>

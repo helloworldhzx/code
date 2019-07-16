@@ -11,33 +11,33 @@
 <body>
     柯粒化
     <script>
-        function curry(){
+        function curry() {
             var args = Array.prototype.slice.call(arguments);
             console.log(args)
-            var fn = function(){
-                var  newArgs = args.concat(Array.prototype.slice.call(arguments));
+            var fn = function () {
+                var newArgs = args.concat(Array.prototype.slice.call(arguments));
                 console.log(newArgs)
-                return multiFn.apply(this,newArgs)
+                return multiFn.apply(this, newArgs)
             }
-            fn.toString = function(){
+            fn.toString = function () {
                 console.log(123)
-                return args.reduce(function(a,b){
-                    return a*b
+                return args.reduce(function (a, b) {
+                    return a * b
                 })
             }
             return fn;
         }
-        function multiFn(a,b,c){
-            return a*b*c;
+        function multiFn(a, b, c) {
+            return a * b * c;
         }
         var multi = curry(multiFn)
         console.log(multi(1)(2)(3))
 
 
         // es6写法
-        const curry2 = (fn,arr=[])=>(...args)=>(
-            args=>args.length===fn.length?fn(...arg):curry(fn,arg)
-        )([...arr,...args])
+        const curry2 = (fn, arr = []) => (...args) => (
+            args => args.length === fn.length ? fn(...arg) : curry(fn, arg)
+        )([...arr, ...args])
     </script>
 </body>
 
