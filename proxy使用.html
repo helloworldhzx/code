@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var target = {
+            name: "zz",
+            age: "66"
+        }
+        var handle = {
+            get: (obj,prop)=>{
+                console.log(obj);
+                console.log(prop);
+                return 1
+            }
+        }
+        var zhazha1 = new Proxy(target,handle)
+        console.log(zhazha1.name);
+        
+    </script>
+</body>
+</html>
