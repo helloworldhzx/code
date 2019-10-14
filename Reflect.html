@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Reflect</title>
+</head>
+<body>
+</body>
+<script>
+    var obj = {
+        name: "zhazha",
+        age: 88,
+        run(){
+            return this.name+'还有走'
+        },
+        get eat(){
+            console.log("get eat")
+            return this.name+'还有吃'
+        },
+        set eat(val){
+            console.log("set eat",val)
+            return this.name+'还有吃'
+        },
+    }
+    var obj2 = {
+        name: "zhazha2"
+    }
+    // const a = Reflect.get(obj,"eat",obj2)
+    // console.log(Reflect.get(obj,'name',obj2))
+    // console.log(Reflect.get(obj,'eat',obj2))
+    obj.eat = '123'
+    console.log(obj.eat)
+</script>
+</html>

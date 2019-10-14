@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    p{
+        width: 50px;
+        border: 1px solid;
+        display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+    }
+    input[name="toggle"]:checked + p {
+        -webkit-line-clamp: unset;
+    }
+    label::after {
+        content: "显示更多";
+    }
+    input[name="toggle"]:checked ~ label::after {
+        content: "收起文本";
+    }
+</style>
+<body>
+        <input type="checkbox" name="toggle" id="toggle" style="display: none;">
+    <p>我不行</p>
+    <label for="toggle"></label>
+</body>
+</html>

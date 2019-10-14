@@ -2,9 +2,33 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>ha~ha~ha~</title>
 </head>
+<script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
 <body>
-$END$
+<div id="app"></div>
 </body>
+<script>
+    // function formatName(user) {
+    //     return user.firstName + ' ' + user.lastName;
+    // }
+    //
+    // const user = {
+    //     firstName: 'Harper',
+    //     lastName: 'Perez'
+    // };
+    //
+    const element = React.createElement("h1", null, "Hello, 3333!")
+    ReactDOM.render(
+        element,
+        document.getElementById('app')
+    );
+    function BB(a,b,c){
+        console.log(a,b,c)
+    }
+    class AA extends BB{
+    }
+    const a =React.createElement(AA, null, "Hello, 3333!")
+</script>
 </html>
