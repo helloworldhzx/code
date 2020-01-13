@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>路径</title>
+</head>
+<body>
+    <canvas width="800" height="800" id="zz-canvas">啊哦</canvas>
+    <script>
+        const canvas = document.getElementById("zz-canvas");
+
+        // 路径
+        if(canvas.getContext){
+            var context = canvas.getContext("2d")
+            context.beginPath(); //开始路径
+            // context.moveTo(0,0)
+            // context.arcTo(100,100,200,200,10)
+
+            context.arc(100,100,99,0,2*Math.PI, false);
+
+            context.moveTo(194,100)
+            context.arc(100,100,94,0,2*Math.PI, false);
+
+            context.moveTo(100,100);
+            context.lineTo(100,15);
+
+            context.moveTo(100,100);
+            context.lineTo(35,100);
+
+            console.log(context.isPointInPath(100,199)) // 判断坐标是否在路径上
+
+            // 绘制文本
+            context.textAlign = "center";
+            context.font = "bold 14px Arial";
+            context.strokeText("12", 100, 20)
+            
+            context.stroke(); // 描边路劲
+        }
+    </script>
+</body>
+</html>

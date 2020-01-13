@@ -9,8 +9,15 @@
 <body>
     <script type="module" >
         // import a from "./index.js"
-        const a = require("./inde.js")
-        console.log(a)
+        // const a = require("./inde.js")
+        // console.log(a)
+        function b(){
+            console.log(123)
+        }
+        const a = document.createElement('div');
+        document.body.appendChild(a)
+        a.innerHTML = 123
+        a.onclick = b
     </script>
 </body>
 </html>

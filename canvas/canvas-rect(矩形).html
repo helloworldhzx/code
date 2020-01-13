@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>矩形</title>
+</head>
+<body>
+    <canvas width="200" height="200" id="zz-canvas">啊哦</canvas>
+    <script>
+        const canvas = document.getElementById("zz-canvas");
+        // 矩形
+        if(canvas.getContext){
+            var context = canvas.getContext("2d")
+            var gradient = context.createLinearGradient(30,30,80,80);
+            gradient.addColorStop(0,"white")
+            gradient.addColorStop(1,"black")
+            context.fillStyle = "#ff0000";  // 填充颜色
+            // context.strokeStyle = "#ff0000";
+            context.fillRect(10,10,50,50) // 从坐标10,10开始绘制，长500，宽50
+
+            // context.fillStyle = "rgb(0,0,225,0.5)";
+            context.fillStyle = gradient;
+            context.fillRect(30,30,50,50)
+
+            // context.clearRect(30,30,30,30) // 清除矩形区域
+
+            context.strokeStyle = "#ff0000"; // 边框线
+            context.strokeRect(100,100,50,50) // 从坐标10,10开始绘制，长500，宽50
+
+            context.strokeStyle = "rgb(0,0,225,0.5)";
+            context.strokeRect(120,120,50,50)
+        }
+    </script>
+</body>
+</html>

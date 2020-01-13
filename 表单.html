@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>表单</title>
+</head>
+<style>
+</style>
+<body>
+    <select name="location" id="sel">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="">3</option>
+        <option>4</option>
+    </select>
+    <form name="form1" id="form1">
+        <input name="zz" required>
+        <input name="zz" autofocus>
+        <input type="number" max="100" min="0" step="5">
+        <input type="text" maxlength="25" size="25" value="nihao">
+        <textarea name="textarea">123</textarea>
+        <input type="submit" value="submit">
+        <input type="reset" value="reset">
+        <select name="location" id="sel">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="">3</option>
+            <option>4</option>
+        </select>
+        <!-- <input type="image" src="1.jpg"> -->
+    </form>
+    <script>
+        const form1 = document.getElementById("form1")
+        form1.onsubmit = function(e){
+            console.log(e)
+            // e.preventDefault()
+        }
+        
+    </script>
+</body>
+</html>
