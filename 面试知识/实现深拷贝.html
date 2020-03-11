@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #id {
+        opacity: 0.9;
+    }
+
+    p {
+        z-index: 5;
+    }
+
+    div {
+        width: 200px;
+        height: 200px;
+        overflow: auto;
+        background: gray;
+    }
+</style>
+
+<body>
+    <a href="http://note.youdao.com/noteshare?id=22fe4dd8990e609d46336a536864250b&sub=2515E183DB43425AA890BCCF5F5ABF94">可不共享一个进程</a>
+    <div>
+        <p>所以元素有了层叠上下文的属性或者需要被剪裁，那么就会被提升成为单独一层，你可以参看下图：</p>
+        <p>从上图我们可以看到，document层上有A和B层，而B层之上又有两个图层。这些图层组织在一起也是一颗树状结构。</p>
+        <p>图层树是基于布局树来创建的，为了找出哪些元素需要在哪些层中，渲染引擎会遍历布局树来创建层树（Update LayerTree）。</p>
+    </div>
+    <p id="p">zz</p>
+    <div id="id">
+        <span>1</span>
+        <span>2</span>
+    </div>
+    <script>
+        Promise.all([new Promise(function (resolve) {
+            resolve("1")
+        }), new Promise(function (resolve) {
+            resolve("2")
+        }), new Promise(function (resolve) {
+            resolve("3")
+        })]).then(function (value) {
+            console.log(value)
+        })
+        function deepClone(obj, map = new WeakMap()) {
+            if (typeof obj === "object") {
+                let cloneObj = Array.isArray(obj) ? [] : {}
+                if (map.get(obj)) {
+                    return map.get(obj)
+                }
+                map.set(obj, cloneObj)
+                for (let key in obj) {
+                    cloneObj[key] = deepClone(obj[key], map)
+                }
+                return cloneObj
+            } else {
+                return obj
+            }
+        }
+        const obj = {
+            age: 1,
+            age2: NaN,
+            age3: Infinity,
+            name: "zz",
+            list: [1, 2, 3, 4, { a: 1 }],
+            obj: { a: 1, b: 2 },
+            name(params) {
+                console.log(123)
+            },
+            symb: Symbol(1),
+            date: new Date(),
+            error: new Error(),
+            reg: /^1/,
+        }
+        obj.deep = obj
+        const clone = deepClone(obj)
+        console.log(clone);
+        console.log(obj);
+
+
+    </script>
+</body>
+
+</html>

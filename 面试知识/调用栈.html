@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var a = 2
+        function add(b, c) {
+            console.trace()
+            return b + c
+        }
+        function addAll(b, c) {
+            var d = 10;
+            var result = add(b, c)
+            return a + result + d
+        }
+        addAll(3, 6)
+
+        function foo() {
+            var myName = "极客时间"
+            let test1 = 1
+            const test2 = 2
+            var innerBar = {
+                getName: function () {
+                    console.log(test1)
+                    return myName
+                },
+                setName: function (newName) {
+                    myName = newName
+                }
+            }
+            return innerBar 
+        }
+        var bar = foo()
+        bar.setName("极客邦")
+        bar.getName()
+        console.log(bar.getName())
+    </script>
+</body>
+
+</html>

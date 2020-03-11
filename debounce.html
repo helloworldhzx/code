@@ -11,6 +11,7 @@
 <body>
     <div onclick="func(12)">防抖</div>
     <script>
+        // 多久时间之后触发，这段时间内再被点击重新计算时间
         function debounce(fn, wait) {
             var time = null
             console.log(1)

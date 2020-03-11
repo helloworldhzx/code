@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function SuperType(){
+            this.property = true
+        }
+        SuperType.prototype.getSupperValue = function(){
+            return this.property
+        }
+
+        function SubType(){
+            // SuperType.bind(this)
+            this.subproperty = false
+        }
+
+        SubType.prototype = new SuperType();
+        // SubType.prototype.constructor = SubType
+        SubType.prototype.getSubValue = function(){
+            return this.subproperty
+        }
+        var instance = new SubType();
+        console.log(instance.constructor === SubType)
+    </script>
+</body>
+</html>

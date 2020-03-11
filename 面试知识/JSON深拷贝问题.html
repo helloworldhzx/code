@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON</title>
+</head>
+<body>
+    <script>
+      var obj = {
+          age: 1,
+          age2: NaN,
+          age3: Infinity,
+          name: "zz",
+          list: [1,2,3,4,{a:1}],
+          obj: {a:1,b:2},
+          name(params) {
+              console.log(123)
+          },
+          symb: Symbol(1),
+          date: new Date(),
+          error: new Error(),
+          reg: /^1/,
+      }
+    //   obj.deep = obj
+      // 忽略function、Symbol、undefined值， 时间转换成string格式，error、reg会变成空对象, NaN、Infinity、-Infinity会变成null
+      console.log(JSON.parse(JSON.stringify(obj)))
+    </script>
+</body>
+</html>
