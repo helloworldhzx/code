@@ -1,23 +1,192 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
+<style>
+    .parent div {
+        border: 1px solid;
+        height: 500px;
+    }
+
+    .parent {
+        position: relative
+    }
+
+    .left {
+        position: absolute;
+        left: 0;
+        width: 100px
+    }
+
+    .right {
+        position: absolute;
+        right: 0;
+        width: 100px
+    }
+
+    .center {
+        position: absolute;
+        left: 100px;
+        right: 100px
+    }
+</style>
+
 <body>
-    <script type="module" >
+    <div class='parent'>
+        <div class='left'></div>
+        <div class='right'></div>
+        <div class='center'>123</div>
+    </div>
+    <!-- <script type="module">
         // import a from "./index.js"
         // const a = require("./inde.js")
         // console.log(a)
-        function b(){
+        function b() {
             console.log(123)
         }
         const a = document.createElement('div');
         document.body.appendChild(a)
         a.innerHTML = 123
         a.onclick = b
+    </script> -->
+    <script>
+        Function.prototype.myCall = function (content, ...arg) {
+            content.fn = this;
+            var result = content.fn(...arg)
+            delete content.fn;
+            return result;
+        }
+        Function.prototype.myApply = function (context, args) {
+            context.fn = this;
+            const result = context.fn(...args);
+            delete context.fn;
+            return result;
+        }
+        function aa() {
+            console.log(this)
+            console.log(arguments)
+        }
+        aa.myApply({ a: 1 }, ["1", "2"])
+        class MyPromise {
+            constructor(fn) {
+                this.state = 'PENDING';
+                this.value = null
+                this.resolvedCallbacks = []
+                this.rejectedCallbacks = []
+                const resolve = value => {
+                    if (this.state === 'PENDING') {
+                        this.state = 'RESOLVED'
+                        this.value = value
+                        this.resolvedCallbacks.map(cb => cb())
+                    }
+                }
+                const reject = value => {
+                    if (this.state === 'PENDING') {
+                        this.state = 'REJECTED'
+                        this.value = value
+                        this.rejectedCallbacks.map(cb => cb())
+                    }
+                }
+                try {
+                    fn(resolve, reject)
+                } catch (e) {
+                    reject(e)
+                }
+            }
+
+            then(onFulfilled, onRejected) {
+                onFulfilled = typeof onFulfilled === 'function' ? onFulfilled : v => v
+                onRejected = typeof onRejected === 'function' ? onRejected : r => { throw r }
+                if (this.state === 'PENDING') {
+                    this.resolvedCallbacks.push(() => {
+                        onFulfilled(this.value)
+                    })
+                    this.rejectedCallbacks.push(() => {
+                        onRejected(this.value)
+                    })
+                }
+                if (this.state === 'RESOLVED') {
+                    onFulfilled(this.value)
+                }
+                if (this.state === 'REJECTED') {
+                    onRejected(this.value)
+                }
+            }
+
+            catch(fn) {
+                return this.then(null, fn);
+            }
+
+            static resolve(val) {
+                return new MyPromise(resolve => {
+                    resolve(val);
+                })
+            }
+
+            static reject(err) {
+                return new MyPromise((resolve, reject) => {
+                    reject(err);
+                })
+            }
+
+            static race(promises) {
+                return new MyPromise((resolve, reject) => {
+                    for (let i = 0; i < promises.length; i++) {
+                        promises[i].then(resolve, reject);
+                    }
+                })
+            }
+
+            static all(promises) {
+                const arr = [];
+                let i = 0;
+                function processData(index, data, resolve) {
+                    arr[index] = data;
+                    i++;
+                    if (i === promises.length) {
+                        resolve(arr);
+                    }
+                }
+                return new MyPromise((resolve, reject) => {
+                    for (let i = 0; i < promises.length; i++) {
+                        promises[i].then(data => {
+                            processData(i, data, resolve);
+                        }, reject);
+                    }
+                })
+            }
+        }
+        var obj = {
+            "A": "U",
+            "G": "C",
+            "C": "G",
+            "T": "A",
+        }
+        "ACGTGGT".replace(/[GCTA]/, function (val) {
+            return obj[val]
+        })
+        let a = 0
+        function *aa(){
+            new Promise(resolve=>{
+                a = a + yield (10);
+                reject(a)
+            }).then(res=>{
+                console.log('2', a)
+            })
+        }
+        let b = async () => {
+            a = a + await 10
+            console.log('2', a) // -> '2' 10
+        }
+        b()
+        a++
+        console.log('1', a) // -> '1' 1
     </script>
 </body>
+
 </html>

@@ -12,7 +12,7 @@
         const canvas = document.getElementById("zz-canvas");
 
         if(canvas.getContext){
-            var context = canvas.getContext("2d")
+            var context = canvas.getContext("2d") // 获取canvas对象
             context.beginPath(); //开始路径
             context.arc(100,100,99,0,2*Math.PI, false);
 
